@@ -23,7 +23,9 @@ class Ksiazki
 	 */
 	public function pobierzWszystkie(): ?array
     {
-		$sql = "SELECT k.* FROM ksiazki k  ";
+		$sql = "SELECT k.*, a.imie, a.nazwisko, ka.nazwa FROM ksiazki k 
+                JOIN autorzy a ON k.id_autora=a.id
+                JOIN kategorie ka ON k.id_kategorii=ka.id ";
 
 		return $this->db->pobierzWszystko($sql);
 	}
